@@ -85,7 +85,16 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+  title: 'Kylo Ren',
+    date: 'April 8th, 2020',
+    firstParagraph: 'Son of Han Solo and Leia Organa, grandson of Darth Vader and the nephew of jedi master Luke Skywalker. During the New Republic Era, he conquered much of the galaxy as Supreme Leader of the First Order and master of the Knights of Ren. The blood of the most powerful Jedi and Sith flowed through his veins, granting him raw strength in the Force.',
+
+    secondParagraph: 'After the destruction of Skywalkers Jedi temple, Solo renounced his family and assumed the identity of Kylo Ren, becoming a First Order warlord and the apprentice of Supreme Leader Snoke. Ren descent into darkness was marked by the massacre of civilians and the murder of his father, but the act of patricide failed to end his inner turmoil. Believing he was destined to rule the galaxy, Ren assassinated Snoke and usurped the position of Supreme Leader, seizing both military and political control of the First Order.',
+
+    thirdParagraph: 'The persona of Kylo Ren ceased to exist after his mother died, allowing him to regain his former identity as Ben Solo. After the battle on Exegol, Solo sacrificed himself to revive Rey, and the two shared a kiss before he vanished into the Force as the last of the Skywalker bloodline.'
+  },
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -113,13 +122,42 @@ const data = [
 
 */
 
-<div class="article">
-  <h2>title of the article</h2>
-  <p class ="date">April 8th, 2020</p>
+function createAtricles(articleData) {
+  let article = document.createElement('div');
+  let aTitle = document.createElement('h2');
+  let aDate = document.createElement('p');
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let button = document.createElement('span');
 
-<p></p>
-<p></p>
-<p></p>
+  article.appendChild(aTitle);
+  article.appendChild(aData);
+  article.appendChild(p1);
+  article.appendChild(p2);
+  article.appendChild(p3);
+  article.appendChild(button);
 
-< span class='expandButton'></span>
-</div>
+  aTitle.textContent = articleData.title;
+  aDate.textContent = articleData.data;
+  p1.textContent = articleData.firstParagraph;
+  p2.textContent = articleData.secondParagraph;
+  p3.textContent = articleData.thirdParagraph;
+  button.textContent = '/expand';
+
+  article.classList.add(`article`);
+  aData.classList.add(`data`);
+  button.classList.add(`expandButton`);
+
+  button.addEventListener(`click`, (event) => {
+    article.classList.toggle('article-open');
+  });
+
+  return article;
+}
+
+const content = document.querySelector('.articles')
+
+data.forEach((articleData) => {
+  content.appendChild(createAtricles(articleData))
+});
