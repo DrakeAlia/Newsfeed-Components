@@ -87,7 +87,7 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   },
   {
-  title: 'Kylo Ren',
+    title: 'Kylo Ren',
     date: 'April 8th, 2020',
     firstParagraph: 'Son of Han Solo and Leia Organa, grandson of Darth Vader and the nephew of jedi master Luke Skywalker. During the New Republic Era, he conquered much of the galaxy as Supreme Leader of the First Order and master of the Knights of Ren. The blood of the most powerful Jedi and Sith flowed through his veins, granting him raw strength in the Force.',
 
@@ -122,7 +122,8 @@ const data = [
 
 */
 
-function createAtricles(articleData) {
+// step 1 //
+function createArticles(articleData) {
   let article = document.createElement('div');
   let aTitle = document.createElement('h2');
   let aDate = document.createElement('p');
@@ -131,33 +132,38 @@ function createAtricles(articleData) {
   let p3 = document.createElement('p');
   let button = document.createElement('span');
 
-  article.appendChild(aTitle);
-  article.appendChild(aData);
-  article.appendChild(p1);
-  article.appendChild(p2);
-  article.appendChild(p3);
-  article.appendChild(button);
 
-  aTitle.textContent = articleData.title;
-  aDate.textContent = articleData.data;
-  p1.textContent = articleData.firstParagraph;
-  p2.textContent = articleData.secondParagraph;
-  p3.textContent = articleData.thirdParagraph;
-  button.textContent = '/expand';
+article.appendChild(aTitle);
+article.appendChild(aDate);
+article.appendChild(p1);
+article.appendChild(p2);
+article.appendChild(p3);
+article.appendChild(button);
 
-  article.classList.add(`article`);
-  aData.classList.add(`data`);
-  button.classList.add(`expandButton`);
+// step 2 //
+aTitle.textContent = articleData.title;
+aDate.textContent = articleData.date;
+p1.textContent = articleData.firstParagraph;
+p2.textContent = articleData.secondParagraph;
+p3.textContent = articleData.thirdParagraph;
+button.textContent = '\expand';
 
-  button.addEventListener(`click`, (event) => {
-    article.classList.toggle('article-open');
-  });
+article.classList.add(`article`);
+aDate.classList.add(`date`);
+button.classList.add(`expandButton`);
 
-  return article;
+button.addEventListener( `click`, (event) => {
+  article.classList.toggle('article-open');
+});
+
+// step 3 //
+return article;
 }
+// step 4 //
 
 const content = document.querySelector('.articles')
 
+// step 5 //
 data.forEach((articleData) => {
-  content.appendChild(createAtricles(articleData))
+  content.appendChild(createArticles(articleData))
 });
